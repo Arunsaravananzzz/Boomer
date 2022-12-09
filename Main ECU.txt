@@ -1,0 +1,61 @@
+https://onlinegdb.com/X4IhslEAlW
+void main()
+{
+    analogread(ROL);
+    analogread(RIL);
+    analogread(ROR);
+    analogread(RIR);
+    UPA_Value=1;
+    UPA_Button =0;
+    if(UPA_Button_Status == 1&& UPA_Vale == 1)
+    {
+        UPA_Button =1;
+        UPA_Value =0;
+    }
+    else if(UPA_Button_Status == 1&& UPA_Vale == 0)
+    {
+        UPA_Button =0;
+        UPA_Value =1;
+    }
+    else
+        UPA_Button =0;
+        UPA_Value =1;
+    
+    
+    
+    if((Gear==R || UPA_Button == 1)&& Speed<20))
+    
+    if(UPA_Button == 1)
+    led =1;
+    {
+    if(ROL<=30||RIL<=30||RIR<=30||ROR<=30)
+    {
+        //CAN_MSG(CAN_ID,DLC,DATA)
+        CAN_MSG(0X38,1,1);//HUD ECU RED
+        if(HUS==0)
+        CAN_MSG(0x39,1,100);//Chime ECU 100% Duty cycle
+        else
+         CAN_MSG(0x39,1,0);
+    }
+    else if((ROL>30||ROL<=60)||(RIL>30||RIL<=60)||(RIR>30||RIR<=60)||(ROR>30||ROR<=60))
+    {
+        CAN_MSG(0X38,1,2);//HUD ECU YELLOW
+        if(HUS==0)
+        CAN_MSG(0x39,1,50);//Chime ECU 50% Duty cycle
+        else
+         CAN_MSG(0x39,1,0);
+    }
+    else if((ROL>60||ROL<=120)||(RIL>60||RIL<=120)||(RIR>60||RIR<=120)||(ROR>60||ROR<=120))
+    {
+        CAN_MSG(0X38,1,3);//HUD ECU WHITE
+        if(HUS==0)
+        CAN_MSG(0x39,1,25);//Chime ECU 25% Duty cycle
+        else
+         CAN_MSG(0x39,1,0);
+    }
+    else 
+        CAN_MSG(0x38,1,0);
+        CAN_MSG(0X39,1,0);
+        
+    
+}
